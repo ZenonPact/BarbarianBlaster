@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://b6a3tfb71rtov"]
+
+[ext_resource type="Script" uid="uid://bi5e6k18ll8yd" path="res://Base/base.gd" id="1_u1x2a"]
+[ext_resource type="PackedScene" uid="uid://dehkdk0u144ki" path="res://Assets/Base.glb" id="2_n5f2c"]
+[ext_resource type="FontFile" uid="uid://c6brdyhbc6k0b" path="res://Assets/Asap/static/Asap-Bold.ttf" id="2_ws5nf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ws5nf"]
+albedo_color = Color(1.353256, 0.19639485, 0.30108815, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_0m7nb"]
+material = SubResource("StandardMaterial3D_ws5nf")
+size = Vector2(5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0m7nb"]
+albedo_color = Color(0.44410735, 0.8744359, 0.08953793, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_8k6vf"]
+material = SubResource("StandardMaterial3D_0m7nb")
+size = Vector2(5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8k6vf"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_77ap6"]
+material = SubResource("StandardMaterial3D_8k6vf")
+size = Vector2(5.2, 0.6)
+
+[node name="Base" type="Node3D" groups=["Base"]]
+script = ExtResource("1_u1x2a")
+original_health_bar_width = 5.0
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+visible = false
+billboard = 1
+text = "Testing"
+font = ExtResource("2_ws5nf")
+font_size = 500
+outline_size = 100
+
+[node name="Base" parent="." instance=ExtResource("2_n5f2c")]
+
+[node name="RedHealthBar" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+mesh = SubResource("QuadMesh_0m7nb")
+
+[node name="PercentLabel" type="Label3D" parent="RedHealthBar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.060692787, 0.16627339)
+visible = false
+text = "testing"
+font = ExtResource("2_ws5nf")
+font_size = 100
+
+[node name="GreenHealthBar" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0.01)
+mesh = SubResource("QuadMesh_8k6vf")
+
+[node name="GreenHealthBar2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -0.05)
+mesh = SubResource("QuadMesh_77ap6")
